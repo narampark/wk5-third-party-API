@@ -44,8 +44,15 @@ $(document).ready(function () {
   savedSchedule();
 
   // updates the week schedule every minute so the past, present, and future blocks change dynamically as time passes
+  var refreshPage = dayjs().hour();
+
   setInterval(function () {
     realTimeBlocks();
     savedSchedule();
+
+    var currentHour = dayjs().hour();
+    if (currentHour !== refreshPage) {
+      location.reload();
+    }
   }, 60000);
 });
